@@ -12,8 +12,11 @@
           >
             <div style="width: 100%">
               <div class="section-title">
-                <h2>{{ seccion.titulo }}</h2>
-                <button @click="abrirVentana(i)">+</button>
+                <input class="seccionTitulo" type="text" v-model="seccion.titulo">
+                <div class="sectionButtons">
+                  <button @click="editarTitulo(i)">✏️</button>
+                  <button @click="abrirVentana(i)">+</button>
+                </div>
               </div>
               <div class="card" v-for="(item, i) in seccion.items" :key="i">
                 <h3>{{ item.titulo }}</h3>
@@ -44,26 +47,7 @@ export default {
       inputTitulo: "",
       inputDescripcion: "",
       secciones: [
-        {
-          titulo: "To Do",
-          items: [
-            { titulo: "Aprender vue", descripcion: "llamar a oso" },
-            { titulo: "Hacer un proyectito", descripcion: "aprende vue" },
-          ],
-        },
-        {
-          titulo: "Doing",
-          items: [
-            {
-              titulo: "En lo de oso",
-              descripcion: "empezando de cero con vue",
-            },
-            {
-              titulo: "haciendo imitacion de trello",
-              descripcion: "trabajando en las cards",
-            },
-          ],
-        },
+        
       ],
     };
   },
@@ -90,6 +74,10 @@ export default {
         items: [],
       };
       this.secciones.push(newSection);
+      console.log(this.secciones);
+    },
+    editarTitulo() {
+
     },
   },
 };
@@ -112,18 +100,25 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.section-title button {
+.section-title button, .sectionButtons button {
   padding: 0.5rem;
   border-radius: 5px;
   font-size: 20px;
   border: none;
 }
-
+.seccionTitulo {
+  
+}
+.sectionButtons button:nth-child(1) {
+  font-size: 18px;
+  margin-right: 2px;
+}
 .contenedor-padre-seccion::v-deep h2 {
   margin-bottom: 0.5rem;
 }
 .contenedor-padre-seccion {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .card {
