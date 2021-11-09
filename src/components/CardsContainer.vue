@@ -25,6 +25,7 @@
                 </div>
               </div>
               <div class="card" v-for="(item, i) in seccion.items" :key="i">
+                <button @click="deleteCard(i)">-</button>
                 <h3>{{ item.titulo }}</h3>
                 <p>{{ item.descripcion }}</p>
               </div>
@@ -53,6 +54,7 @@ export default {
       inputTitulo: "",
       inputDescripcion: "",
       secciones: [],
+      indiceItemSeleccionado: 0,
     };
   },
   methods: {
@@ -79,6 +81,11 @@ export default {
       console.log(this.secciones);
     },
     editarTitulo() {},
+    deleteCard(itemEliminar){
+        console.log(itemEliminar);
+       this.secciones[this.indiceSeleccionado].items.splice(itemEliminar
+      );
+    }
   },
 };
 </script>
