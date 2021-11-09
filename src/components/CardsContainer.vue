@@ -61,8 +61,6 @@ export default {
       this.indiceSeleccionado = indiceSeccion;
     },
     agregarItem() {
-      /* const newItem = { titulo: "new Item", descripcion: "item de prueba" };
-      this.secciones[indiceSeccion].items.push(newItem); */
       console.log(this.inputTitulo, this.inputDescripcion);
       this.secciones[this.indiceSeleccionado].items.push({
         titulo: this.inputTitulo,
