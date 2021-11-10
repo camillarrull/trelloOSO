@@ -20,14 +20,21 @@
                   v-model="seccion.titulo"
                 />
                 <div class="sectionButtons">
-                  <button @click="editarTitulo(i)">✏️</button>
-                  <button @click="abrirVentana(i)">+</button>
+                  <!-- <button @click="editarTitulo(i)">✏️</button> -->
+                  <button @click="abrirVentanaDelete(i)">x</button>
                 </div>
               </div>
-              <div class="card" v-for="(item, i) in seccion.items" :key="i">
-                <button @click="deleteCard(i)">-</button>
-                <h3>{{ item.titulo }}</h3>
+              <div class="card" v-for="(item, y) in seccion.items" :key="y">
+                <div class="card-title">
+                  <h3>{{ item.titulo }}</h3>
+
+                  <button @click="deleteCard(i, y)">x</button>
+                </div>
+
                 <p>{{ item.descripcion }}</p>
+              </div>
+              <div class="card card-add">
+                <button @click="abrirVentana(i)">+</button>
               </div>
             </div>
           </div>
@@ -36,10 +43,28 @@
     </div>
     <div class="ventanita-container" v-if="ventanita">
       <div class="ventanita">
+        <div class="ventanita-title">
+          <h3>Agregar Tarea</h3>
+          <button @click="ventanita = !ventanita">x</button>
+        </div>
+        <label>Titulo</label>
         <input type="text" v-model="inputTitulo" />
+        <label>Descripcion</label>
         <input type="text" v-model="inputDescripcion" />
-        <button @click="ventanita = !ventanita">Cerrar</button>
-        <button @click="agregarItem()">Guardar</button>
+
+        <button class="button-primario" @click="agregarItem()">Guardar</button>
+      </div>
+    </div>
+    <div class="ventanita-container" v-if="ventanitaDelete">
+      <div class="ventanita ventanita-delete">
+        <div class="ventanita-title">
+          <h3>Eliminar seccion</h3>
+          <button @click="ventanitaDelete = !ventanitaDelete">x</button>
+        </div>
+        <p>Estas seguro de querer eliminar esta seccion?</p>
+        <button class="button-primario" @click="deleteSeccion(i)">
+          ELIMINAR
+        </button>
       </div>
     </div>
   </div>
@@ -50,10 +75,35 @@ export default {
   data() {
     return {
       ventanita: false,
+      ventanitaDelete: false,
       indiceSeleccionado: 0,
       inputTitulo: "",
       inputDescripcion: "",
-      secciones: [],
+      secciones: [
+        {
+          titulo: "to do",
+          items: [
+            {
+              titulo: "tarea 1",
+              descripcion: "snjkldjns",
+            },
+            {
+              titulo: "tarea 2",
+              descripcion: "fsdsfdg",
+            },
+          ],
+        },
+        {
+          titulo: "done",
+          items: [
+            { titulo: "tarea 3", descripcion: "snjkldjns" },
+            {
+              titulo: "tarea 4",
+              descripcion: "fsdsfdg",
+            },
+          ],
+        },
+      ],
       indiceItemSeleccionado: 0,
     };
   },
@@ -62,6 +112,12 @@ export default {
       this.ventanita = true;
       this.indiceSeleccionado = indiceSeccion;
     },
+    abrirVentanaDelete(indiceSeccion) {
+      console.log("entro");
+      this.ventanitaDelete = true;
+      this.indiceSeleccionado = indiceSeccion;
+    },
+
     agregarItem() {
       console.log(this.inputTitulo, this.inputDescripcion);
       this.secciones[this.indiceSeleccionado].items.push({
@@ -81,11 +137,15 @@ export default {
       console.log(this.secciones);
     },
     editarTitulo() {},
-    deleteCard(itemEliminar){
-        console.log(itemEliminar);
-       this.secciones[this.indiceSeleccionado].items.splice(itemEliminar
-      );
-    }
+    deleteCard(indiceSeccion, indiceItem) {
+      console.log(indiceSeccion, indiceItem);
+      this.secciones[indiceSeccion].items.splice(indiceItem, 1);
+    },
+    deleteSeccion(indiceSeccion) {
+      console.log(indiceSeccion);
+      this.secciones.splice(indiceSeccion, 1);
+      this.ventanitaDelete = false;
+    },
   },
 };
 </script>
@@ -101,18 +161,19 @@ export default {
   padding: 1rem;
   background: #d0d7da;
   border-radius: 5px;
-  width: 300px;
+  width: 350px;
+  overflow-y: scroll;
+  height: 60vh;
 }
 .section-title {
   display: flex;
   justify-content: space-between;
 }
-.section-title button,
 .sectionButtons button {
-  padding: 0.5rem;
-  border-radius: 5px;
-  font-size: 20px;
+  font-size: 1.5rem;
   border: none;
+  background: transparent;
+  cursor: pointer;
 }
 .agregar-card {
   padding: 1rem;
@@ -120,11 +181,16 @@ export default {
   border-radius: 5px;
   background: #ffffff;
   border: 1px solid #d0d7da;
+  font-size: 20px;
+  cursor: pointer;
 }
-.sectionButtons button:nth-child(1) {
+.agregar-card:hover {
+  background: #d0d7da;
+}
+/* .sectionButtons button:nth-child(1) {
   font-size: 18px;
   margin-right: 2px;
-}
+} */
 .contenedor-padre-seccion::v-deep h2 {
   margin-bottom: 0.5rem;
 }
@@ -140,6 +206,27 @@ export default {
   border-radius: 5px;
   width: 100%;
 }
+.card-add {
+  color: grey;
+  text-align: center;
+}
+.card-add button {
+  font-size: 2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+.card-title button {
+  font-size: 1.2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 .ventanita-container {
   position: absolute;
   top: 0;
@@ -154,11 +241,34 @@ export default {
   background-color: white;
   min-width: 400px;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.ventanita-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  align-items: center;
+}
+.ventanita-title button {
+  font-size: 1.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 .ventanita input {
   background-color: white;
   border: 1px solid grey;
-  border-radius: 2px;
+  border-radius: 5px;
+  height: 2rem;
+  margin: 0 0 1rem 0;
+}
+.ventanita-delete {
+  display: flex;
+  flex-direction: column;
+}
+.ventanita-delete p {
+  margin-bottom: 1rem;
 }
 .seccionTitulo {
   background: #d0d7da;
