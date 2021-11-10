@@ -2,15 +2,13 @@
   <div class="contenedor-padre-seccion">
           <div
             class="contenedorSeccion"
-            v-for="(seccion, i) in secciones"
-            :key="i"
           >
             <div style="width: 100%">
               <div class="section-title">
                 <input
                   class="seccionTitulo"
                   type="text"
-                  v-model="seccion.titulo"
+                  v-model="this.$store.state.secciones[0].titulo"
                 />
                 <div class="sectionButtons">
                   <button @click="abrirVentanaDelete(i)">x</button>
@@ -46,31 +44,6 @@ export default {
       indiceSeleccionado: 0,
       inputTitulo: "",
       inputDescripcion: "",
-      secciones: [
-        {
-          titulo: "to do",
-          items: [
-            {
-              titulo: "tarea 1",
-              descripcion: "snjkldjns",
-            },
-            {
-              titulo: "tarea 2",
-              descripcion: "fsdsfdg",
-            },
-          ],
-        },
-        {
-          titulo: "done",
-          items: [
-            { titulo: "tarea 3", descripcion: "snjkldjns" },
-            {
-              titulo: "tarea 4",
-              descripcion: "fsdsfdg",
-            },
-          ],
-        },
-      ],
       indiceItemSeleccionado: 0,
     };
   },

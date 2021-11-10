@@ -2,13 +2,17 @@
   <div>
     <div class="section-cards">
       <div class="container">
-        <button class="agregar-card" @click="agregarSeccion()">
+        <!-- <button class="agregar-card" @click="agregarSeccion()">
           Crear Tarjeta
-        </button>
-        <SeccionComponent/>
+        </button>-->
+        <button class="agregar-card" @click="agregarSeccion()">Crear Tarjeta</button>
+        <div v-for="(seccion, i) in this.$store.state.secciones" :key="i">
+          <SeccionComponent />
+        </div>
       </div>
     </div>
-
+    <!-- v-for="(seccion, i) in secciones"
+    :key="i"-->
   </div>
 </template>
 
@@ -74,12 +78,7 @@ export default {
       this.ventanita = false;
     },
     agregarSeccion() {
-      const newSection = {
-        titulo: "Nueva seccion",
-        items: [],
-      };
-      this.secciones.push(newSection);
-      console.log(this.secciones);
+      this.$store.dispatch('test1')
     },
     editarTitulo() {},
     deleteCard(indiceSeccion, indiceItem) {
@@ -102,7 +101,7 @@ export default {
   padding-top: 4rem;
 }
 
- .agregar-card {
+.agregar-card {
   padding: 1rem;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -127,5 +126,4 @@ export default {
   flex-wrap: wrap;
   gap: 10px;
 } */
-
 </style>

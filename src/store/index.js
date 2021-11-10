@@ -6,27 +6,58 @@ import Vuex from 'vuex';
 const generalData = {
     state: () => {
         return {
-            index: 0
+            index: 0,
+            secciones: [{
+                    titulo: 'toDo',
+                    items: [{
+                            titulo: 'cook',
+                            descripcion: '2 eggs'
+                        },
+                        {
+                            titulo: 'eat',
+                            descripcion: 'hamburguer'
+                        }
+                    ]
+                },
+                {
+                    titulo: 'Doing',
+                    items: [{
+                            titulo: 'smt',
+                            descripcion: 'xx2 xxx'
+                        },
+                        {
+                            titulo: 'smt2',
+                            descripcion: 'hamburguer'
+                        }
+                    ]
+                }
+            ],
+
         }
     },
     mutations: {
-        incrementIndex(state) {
-            state.index += 1;
+        test1(state) {
+            const newSection = {
+                titulo: "Nueva seccion",
+                items: [],
+            };
+            state.secciones.push(newSection);
+            console.log('entree',state.secciones)
         }
     },
     actions: {
-        incrementIndex({commit}) {
-            commit('incrementIndex');
+        test1({
+            commit
+        }) {
+            commit('test1');
         }
     }
 }
 
 Vue.use(Vuex);
 
-export default new Vuex.Store(
-    {
-        modules: {
-            generalData
-        }
+export default new Vuex.Store({
+    modules: {
+        generalData
     }
-);
+});
