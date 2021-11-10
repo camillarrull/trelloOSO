@@ -3,9 +3,7 @@ import Vuex from 'vuex';
 // import generalData from './general';
 // import favoritesData from './favoritos';
 
-Vue.use(Vuex);
-
-const generalData = new Vuex.Store({
+const generalData = {
     state: () => {
         return {
             index: 0
@@ -21,12 +19,14 @@ const generalData = new Vuex.Store({
             commit('incrementIndex');
         }
     }
-})
+}
 
-// export default new Vuex.Store(
-//     {
-//         modules: {
-//             generalData
-//         }
-//     }
-// );
+Vue.use(Vuex);
+
+export default new Vuex.Store(
+    {
+        modules: {
+            generalData
+        }
+    }
+);
