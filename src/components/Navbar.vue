@@ -2,6 +2,7 @@
   <div class="navbar">
     <div class="container">
       <h1>hola soy la nav</h1>
+      <p>HOLA</p>
       <router-link to="/">
         <button>HOME</button>
       </router-link>
@@ -16,7 +17,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    console.log(this.store);
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
