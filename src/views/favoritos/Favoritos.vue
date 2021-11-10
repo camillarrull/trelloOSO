@@ -1,13 +1,12 @@
 <template>
   <div class="favoritos">
-    <div>
-      <h1>Hola soy favoritos</h1>
-    </div>
   </div>
 </template>
 
 <script>
+
 export default {};
+
 </script>
 
 <style scoped>
