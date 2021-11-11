@@ -30,13 +30,11 @@ const generalData = {
         },
         deleteSeccion(state, payload){
             for(let i = 0; i < state.secciones.length; i++) {
-                if(state.secciones[i].id === payload.id) {
-                    state.secciones.splice(payload.id, 1)
-                    console.log(payload.id);
+                if(state.secciones[i].id === payload) {
+                    state.secciones.splice(i, 1);
                     break;
                 }
             }
-            this.ventanitaDelete = false;
         }
     },
 
@@ -48,8 +46,7 @@ const generalData = {
             commit('changeTitle', payload)
         },
         deleteSeccion({ commit },payload){
-            
-            commit('deleteSeccion',payload);
+            commit('deleteSeccion', payload);
         },
     }
 }

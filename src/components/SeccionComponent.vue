@@ -5,21 +5,22 @@
           >
             <div style="width: 100%">
               <div class="section-title">
+                <p>{{this.thisSeccion.titulo}}</p>
                 <input
-                  placeholder="Titulo"
                   class="seccionTitulo"
                   type="text"
                   v-model="titleInput"
+                  :placeholder="titleInput"
                 />
                 <div class="sectionButtons">
-                  <button @click="abrirVentanaDelete(id)">x</button>
+                  <button @click="deleteSeccion">x</button>
                 </div>
               </div>
               <TaskComponent/>
             </div>
           </div>
           <div class="ventanita-container" v-if="ventanitaDelete">
-       <div class="ventanita ventanita-delete">
+       <!-- <div class="ventanita ventanita-delete">
         <div class="ventanita-title">
           <h3>Eliminar seccion</h3>
           <button @click="ventanitaDelete = !ventanitaDelete">x</button>
@@ -28,7 +29,7 @@
         <button class="button-primario" @click="deleteSeccion">
           ELIMINAR
         </button>
-      </div>
+       </div> -->
     </div>
   </div>
 </template>
@@ -44,8 +45,9 @@ export default {
         default: 9999,
       },
     },
-    data() {
+  data() {
     return {
+      componentKey: 0,
       titleInput: '',
       ventanita: false,
       ventanitaDelete: false,
@@ -55,19 +57,37 @@ export default {
       indiceItemSeleccionado: 0,
     };
   },
-    methods:{
+  methods:{
     abrirVentanaDelete(indiceSeccion) {
       this.ventanitaDelete = true;
       this.indiceSeleccionado = indiceSeccion;
       console.log(indiceSeccion);
     },
     deleteSeccion() {
-      this.$store.dispatch('deleteSeccion', { id: this.id })
+      this.$store.dispatch('deleteSeccion', this.id)
     },
   },
   watch: {
     titleInput() {
       this.$store.dispatch('changeTitle', { titulo: this.titleInput, id: this.id })
+    },
+    thisSeccion() {
+      this.componentKey = this.componentKey + 1;
+    }
+  },
+  created() {
+    this.titleInput = this.thisSeccion.titulo
+  },
+  computed: {
+    thisSeccion() {
+      let seccion;
+      const secciones = this.$store.state.generalData.secciones;
+      for(let i = 0; i < secciones.length; i++) {
+        if(secciones[i].id === this.id) {
+          seccion = secciones[i]
+        }
+      }
+      return seccion;
     }
   }
 };
