@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="section-cards">
+        <button class="agregar-card" @click="agregarSeccion">Crear Tarjeta</button>
       <div class="container">
         <!-- <button class="agregar-card" @click="agregarSeccion()">
           Crear Tarjeta
         </button>-->
-        <button class="agregar-card" @click="agregarSeccion">Crear Tarjeta</button>
+        
         <div v-for="(seccion, i) in sectionList" :key="i">
           <SeccionComponent :id="sectionList[i].id" />
         </div>
