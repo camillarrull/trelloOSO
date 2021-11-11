@@ -61,7 +61,7 @@ export default {
       this.indiceSeleccionado = indiceSeccion;
     },
     deleteSeccion() {
-      this.$store.dispatch('deleteSeccion')
+      this.$store.dispatch('deleteSeccion', { id: this.id })
     },
   },
   watch: {

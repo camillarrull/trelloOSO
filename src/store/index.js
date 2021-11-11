@@ -28,17 +28,16 @@ const generalData = {
                 }
             }
         },
-        deleteSeccion(state){
-            console.log(this.state.generalData.secciones);
-            for(let i = 0; i < state.generalData.secciones.length; i++) {
-                console.log(i);
-                // if(state.generalData.secciones[i].idSeccion === payload.id) {
-                //     state.generalData.secciones[i].splice(payload.id,1)
-                //     break;
-                // }
+        deleteSeccion(state, payload){
+            for(let i = 0; i < state.secciones.length - 1; i++) {
+                if(state.secciones[i].id === payload.id) {
+                    state.secciones.splice(payload.id, 1)
+                    console.log("Holu, soy:" + state.secciones[i].titulo)
+                    break;
+                }
             }
             this.ventanitaDelete = false;
-            
+            console.log(state.secciones);
         }
     },
 
