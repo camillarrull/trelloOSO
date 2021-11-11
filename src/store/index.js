@@ -6,50 +6,35 @@ import Vuex from 'vuex';
 const generalData = {
     state: () => {
         return {
-            index: 0,
-            secciones: [{
-                    titulo: 'toDo',
-                    items: [{
-                            titulo: 'cook',
-                            descripcion: '2 eggs'
-                        },
-                        {
-                            titulo: 'eat',
-                            descripcion: 'hamburguer'
-                        }
-                    ]
-                },
-                {
-                    titulo: 'Doing',
-                    items: [{
-                            titulo: 'smt',
-                            descripcion: 'xx2 xxx'
-                        },
-                        {
-                            titulo: 'smt2',
-                            descripcion: 'hamburguer'
-                        }
-                    ]
-                }
-            ],
-
+            idRef: 0,
+            secciones: [],
         }
     },
     mutations: {
-        test1(state) {
+        agregarSeccion(state) {
             const newSection = {
                 titulo: "Nueva seccion",
                 items: [],
+                id: state.idRef,
             };
             state.secciones.push(newSection);
-            console.log('entree',state.secciones)
+            state.idRef += 1;
+        },
+        changeTitle(state, payload) {
+            for(let i = 0; i < state.secciones.length; i++) {
+                if(state.secciones[i].id === payload.id) {
+                    state.secciones[i].titulo = payload.titulo
+                    break;
+                }
+            }
         }
     },
     actions: {
-        test1({
-            commit
-        }) {
-            commit('test1');
+        agregarSeccion({ commit }){
+            commit('agregarSeccion');
+        },
+        changeTitle({ commit }, payload) {
+            commit('changeTitle', payload)
         }
     }
 }
@@ -61,3 +46,29 @@ export default new Vuex.Store({
         generalData
     }
 });
+
+/*
+const secciones = [
+    {
+        titulo: 'personales',
+        id: 1,
+        status: 'activa',
+        favorito: true,
+        cardIdRef: 0,
+        cards: [
+            {
+                titulo: 'sacar al perro',
+                descripcion: 'a la plaza de en frente',
+                id: 1,
+                status: 'activa',
+            },
+            {
+                titulo: 'limpiar la cocina',
+                descripcion: 'ponerle cif',
+                id: 2,
+                status: 'eliminada',
+            }
+        ]
+    }
+]
+*/

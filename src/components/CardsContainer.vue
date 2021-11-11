@@ -5,9 +5,9 @@
         <!-- <button class="agregar-card" @click="agregarSeccion()">
           Crear Tarjeta
         </button>-->
-        <button class="agregar-card" @click="agregarSeccion()">Crear Tarjeta</button>
-        <div v-for="(seccion, i) in this.$store.state.secciones" :key="i">
-          <SeccionComponent />
+        <button class="agregar-card" @click="agregarSeccion">Crear Tarjeta</button>
+        <div v-for="(seccion, i) in sectionList" :key="i">
+          <SeccionComponent :id="sectionList[i].id" />
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@ export default {
       this.ventanita = false;
     },
     agregarSeccion() {
-      this.$store.dispatch('test1')
+      this.$store.dispatch('agregarSeccion')
     },
     editarTitulo() {},
     deleteCard(indiceSeccion, indiceItem) {
@@ -91,6 +91,11 @@ export default {
       this.ventanitaDelete = false;
     },
   },
+  computed: {
+    sectionList() {
+      return this.$store.state.generalData.secciones;
+    }
+  }
 };
 </script>
 

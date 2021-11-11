@@ -6,9 +6,10 @@
             <div style="width: 100%">
               <div class="section-title">
                 <input
+                  placeholder="Titulo"
                   class="seccionTitulo"
                   type="text"
-                  v-model="this.$store.state.secciones[0].titulo"
+                  v-model="titleInput"
                 />
                 <div class="sectionButtons">
                   <button @click="abrirVentanaDelete(i)">x</button>
@@ -37,8 +38,15 @@ import TaskComponent from '../components/TaskComponent.vue'
 
 export default {
   components: { TaskComponent },
+    props: {
+      id: {
+        type: Number,
+        default: 9999,
+      },
+    },
     data() {
     return {
+      titleInput: '',
       ventanita: false,
       ventanitaDelete: false,
       indiceSeleccionado: 0,
@@ -58,7 +66,12 @@ export default {
       this.secciones.splice(indiceSeccion, 1);
       this.ventanitaDelete = false;
     },
+  },
+  watch: {
+    titleInput() {
+      this.$store.dispatch('changeTitle', { titulo: this.titleInput, id: this.id })
     }
+  }
 };
 </script>
 
@@ -97,5 +110,9 @@ export default {
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+::placeholder {
+  color: #808080;
 }
 </style>
