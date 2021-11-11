@@ -6,7 +6,7 @@ import Vuex from 'vuex';
 const generalData = {
     state: () => {
         return {
-            idRef: 0,
+            idSeccion: 0,
             secciones: [],
         }
     },
@@ -15,10 +15,10 @@ const generalData = {
             const newSection = {
                 titulo: "Nueva seccion",
                 items: [],
-                id: state.idRef,
+                id: state.idSeccion,
             };
             state.secciones.push(newSection);
-            state.idRef += 1;
+            state.idSeccion += 1;
         },
         changeTitle(state, payload) {
             for(let i = 0; i < state.secciones.length; i++) {
@@ -27,15 +27,32 @@ const generalData = {
                     break;
                 }
             }
+        },
+        deleteSeccion(state){
+            console.log(this.state.generalData.secciones);
+            for(let i = 0; i < state.generalData.secciones.length; i++) {
+                console.log(i);
+                // if(state.generalData.secciones[i].idSeccion === payload.id) {
+                //     state.generalData.secciones[i].splice(payload.id,1)
+                //     break;
+                // }
+            }
+            this.ventanitaDelete = false;
+            
         }
     },
+
     actions: {
         agregarSeccion({ commit }){
             commit('agregarSeccion');
         },
         changeTitle({ commit }, payload) {
             commit('changeTitle', payload)
-        }
+        },
+        deleteSeccion({ commit },payload){
+            
+            commit('deleteSeccion',payload);
+        },
     }
 }
 

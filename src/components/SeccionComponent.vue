@@ -12,7 +12,7 @@
                   v-model="titleInput"
                 />
                 <div class="sectionButtons">
-                  <button @click="abrirVentanaDelete(i)">x</button>
+                  <button @click="abrirVentanaDelete(id)">x</button>
                 </div>
               </div>
               <TaskComponent/>
@@ -25,7 +25,7 @@
           <button @click="ventanitaDelete = !ventanitaDelete">x</button>
         </div>
         <p>Estas seguro de querer eliminar esta seccion?</p>
-        <button class="button-primario" @click="deleteSeccion(i)">
+        <button class="button-primario" @click="deleteSeccion">
           ELIMINAR
         </button>
       </div>
@@ -57,14 +57,11 @@ export default {
   },
     methods:{
     abrirVentanaDelete(indiceSeccion) {
-      console.log("entro");
       this.ventanitaDelete = true;
       this.indiceSeleccionado = indiceSeccion;
     },
-    deleteSeccion(indiceSeccion) {
-      console.log(indiceSeccion);
-      this.secciones.splice(indiceSeccion, 1);
-      this.ventanitaDelete = false;
+    deleteSeccion() {
+      this.$store.dispatch('deleteSeccion')
     },
   },
   watch: {
