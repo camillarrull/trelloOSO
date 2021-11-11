@@ -84,6 +84,7 @@ export default {
   width: 350px;
   overflow-y: scroll;
   height: 60vh;
+  margin: 10px;
 }
 
 .contenedor-padre-seccion::v-deep h2 {
