@@ -18,6 +18,18 @@
               <TaskComponent/>
             </div>
           </div>
+          <div class="ventanita-container" v-if="ventanitaDelete">
+       <div class="ventanita ventanita-delete">
+        <div class="ventanita-title">
+          <h3>Eliminar seccion</h3>
+          <button @click="ventanitaDelete = !ventanitaDelete">x</button>
+        </div>
+        <p>Estas seguro de querer eliminar esta seccion?</p>
+        <button class="button-primario" @click="deleteSeccion(i)">
+          ELIMINAR
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
