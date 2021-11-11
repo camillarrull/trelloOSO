@@ -29,15 +29,14 @@ const generalData = {
             }
         },
         deleteSeccion(state, payload){
-            for(let i = 0; i < state.secciones.length - 1; i++) {
+            for(let i = 0; i < state.secciones.length; i++) {
                 if(state.secciones[i].id === payload.id) {
                     state.secciones.splice(payload.id, 1)
-                    console.log("Holu, soy:" + state.secciones[i].titulo)
+                    console.log(payload.id);
                     break;
                 }
             }
             this.ventanitaDelete = false;
-            console.log(state.secciones);
         }
     },
 

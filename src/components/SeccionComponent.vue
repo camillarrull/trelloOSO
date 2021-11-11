@@ -59,6 +59,7 @@ export default {
     abrirVentanaDelete(indiceSeccion) {
       this.ventanitaDelete = true;
       this.indiceSeleccionado = indiceSeccion;
+      console.log(indiceSeccion);
     },
     deleteSeccion() {
       this.$store.dispatch('deleteSeccion', { id: this.id })
