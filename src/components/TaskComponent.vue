@@ -13,35 +13,8 @@
                 />
                 <div class="sectionButtons">
                      <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
-                  <button @click="deleteSeccion">x</button>
                 </div>
               </div>
-
-      <!-- <div class="card" v-for="(item, y) in seccion.items" :key="y">
-        <div class="card-title">
-          <h3>{{ item.titulo }}</h3>
-          <button @click="deleteCard(i, y)">x</button>
-        </div>
-
-        <p>{{ item.descripcion }}</p>
-      </div>
-
-      
-
-      <div class="ventanita-container" v-if="ventanita">
-      <div class="ventanita">
-        <div class="ventanita-title">
-          <h3>Agregar Tarea</h3>
-          <button @click="ventanita = !ventanita">x</button>
-        </div>
-        <label>Titulo</label>
-        <input type="text" v-model="inputTitulo" />
-        <label>Descripcion</label>
-        <input type="text" v-model="inputDescripcion" />
-
-        <button class="button-primario" @click="agregarItem()">Guardar</button>
-      </div> -->
-      
     </div>
   </div>
   </div>
@@ -50,11 +23,7 @@
 <script>
 export default {
     props: {
-      id: {
-        type: String,
-        default: "",
-      },
-      idSeccion:{
+    idSeccion:{
           type: String,
         default: "",
       },
@@ -91,6 +60,11 @@ export default {
         this.tituloDisplay = !this.tituloDisplay
         this.iconoBoton = !this.iconoBoton
     },
+  },
+  watch: {
+    titleInput() {
+      this.$store.dispatch('changeTitleCard', { titulo: this.titleInput, id: this.card.id, idSeccion:this.idSeccion })
+    }
   },
   computed:{
     thisTask() {
