@@ -20,12 +20,12 @@
                 </div>
               </div>
               
-              <div class="card card-add">
-                <button @click="agregarTask">+</button>
-            </div>
            <div v-for="(card, i) in sectionList" :key="i">
                 <TaskComponent :id="sectionList[i].id"/>
         </div> 
+              <div class="card card-add">
+                <button @click="agregarTask">+</button>
+            </div>
             </div>
           </div>
           <div class="ventanita-container" v-if="ventanitaDelete">

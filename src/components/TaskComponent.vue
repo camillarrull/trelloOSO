@@ -4,11 +4,19 @@
 
         <div class="card">
             <div class="card-title">
-          <h3>aloooo</h3>
-          <button>x</button>
+          
+                <input
+                  class="seccionTitulo"
+                  type="text"
+                  v-model="cardTitulo"
+                />
         </div>
         
-        <p>no deberia andar asi</p>
+        <p><input
+                  class="seccionTitulo"
+                  type="text"
+                  v-model="cardInfo"
+                /></p>
         </div>
 
       <!-- <div class="card" v-for="(item, y) in seccion.items" :key="y">
@@ -54,6 +62,8 @@ export default {
       indiceSeleccionado: 0,
       inputTitulo: "",
       inputDescripcion: "",
+      cardTitulo:" Card Title",
+      cardInfo:"Card Info",
     
           items: [
            
