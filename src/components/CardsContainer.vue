@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="section-cards">
+        <div class="container">
         <button class="agregar-card" @click="agregarSeccion">Crear Tarjeta</button>
+
+        </div>
       <div class="container">
         <div v-for="(seccion, i) in sectionList" :key="i">
           <SeccionComponent :seccion="seccion" :id="seccion.id" />
@@ -45,11 +48,22 @@ export default {
   },
   computed: {
       ...mapState({
-          secciones: ({secciones}) => secciones,
+          secciones: (state) => state.generalData.secciones
       }),
     sectionList() {
       return this.$store.state.generalData.secciones;
     }
+  },
+  watch:{
+      secciones(){
+          localStorage.setItem("secciones", JSON.stringify(this.secciones))
+      }
+  },
+  mounted(){
+      const localStorageSecciones = JSON.parse(localStorage.getItem("secciones"))
+      if(localStorageSecciones){
+          this.$store.dispatch("cargarSecciones", localStorageSecciones)
+      }
   }
 };
 </script>

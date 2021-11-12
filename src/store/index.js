@@ -6,11 +6,13 @@ import Vuex from 'vuex';
 const generalData = {
     state: () => {
         return {
-            idSeccion: 0,
             secciones: [],
         }
     },
     mutations: {
+        cargarSecciones(state, payload) {
+            state.secciones = payload
+        },
         agregarSeccion(state) {
             const newSection = {
                 titulo: "Nueva seccion",
@@ -70,6 +72,11 @@ const generalData = {
             commit
         }) {
             commit('agregarSeccion');
+        },
+        cargarSecciones({
+            commit
+        }, payload) {
+            commit("cargarSecciones", payload)
         },
         changeTitle({
             commit
