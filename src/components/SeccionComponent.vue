@@ -21,7 +21,7 @@
               </div>
               
            <div v-for="(card, i) in sectionList" :key="i">
-                <TaskComponent :id="sectionList[i].id"/>
+                <TaskComponent :id="sectionList[i].id" :idSeccion="sectionId.id"/>
         </div> 
               <div class="card card-add">
                 <button @click="agregarTask">+</button>
@@ -100,6 +100,9 @@ export default {
       sectionList() {
       return this.$store.state.generalData.secciones[this.id].items;
     },
+    sectionId() {
+      return this.$store.state.generalData.secciones[this.id];
+    },
     thisSeccion() {
       let seccion;
       const secciones = this.$store.state.generalData.secciones;
@@ -138,19 +141,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.seccionTitulo {
-  background: #d0d7da;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  width: 190px;
-}
-.sectionButtons button {
-  font-size: 1.5rem;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
+
 
 ::placeholder {
   color: #808080;
