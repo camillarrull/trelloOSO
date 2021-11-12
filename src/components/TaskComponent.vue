@@ -20,9 +20,7 @@
         <p>{{ item.descripcion }}</p>
       </div>
 
-      <div class="card card-add">
-        <button @click="abrirVentana(i)">+</button>
-      </div>
+      
 
       <div class="ventanita-container" v-if="ventanita">
       <div class="ventanita">
@@ -79,31 +77,5 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  background: white;
-  padding: 1rem;
-  margin-top: 0.5rem;
-  border-radius: 5px;
-  width: 100%;
-}
-.card-title {
-  display: flex;
-  justify-content: space-between;
-}
-.card-title button {
-  font-size: 1.2rem;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-.card-add {
-  color: grey;
-  text-align: center;
-}
-.card-add button {
-  font-size: 2rem;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
+
 </style>

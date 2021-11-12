@@ -7,6 +7,7 @@
         <div v-for="(seccion, i) in sectionList" :key="i">
           <SeccionComponent :id="sectionList[i].id" />
         </div>
+        
       </div>
     </div>
     <!-- v-for="(seccion, i) in secciones"

@@ -16,38 +16,62 @@ const generalData = {
                 titulo: "Nueva seccion",
                 items: [],
                 id: state.idSeccion,
+                idRef: 0
             };
             state.secciones.push(newSection);
             state.idSeccion += 1;
         },
         changeTitle(state, payload) {
-            for(let i = 0; i < state.secciones.length; i++) {
-                if(state.secciones[i].id === payload.id) {
+            for (let i = 0; i < state.secciones.length; i++) {
+                if (state.secciones[i].id === payload.id) {
                     state.secciones[i].titulo = payload.titulo
                     break;
                 }
             }
         },
-        deleteSeccion(state, payload){
-            for(let i = 0; i < state.secciones.length; i++) {
-                if(state.secciones[i].id === payload) {
+        deleteSeccion(state, payload) {
+            for (let i = 0; i < state.secciones.length; i++) {
+                if (state.secciones[i].id === payload) {
                     state.secciones.splice(i, 1);
                     break;
                 }
             }
-        }
+        },
+        agregarTask(state, payload) {
+            const newTask = {
+                titulo: 'hola',
+                descripcion: '',
+                id: state.secciones[payload].idRef,
+                status: 'activa',
+            };
+            state.secciones[payload].items.push(newTask);
+            console.log(state.secciones)
+            state.secciones[payload].idRef += 1;
+            console.log(payload)
+        },
     },
 
     actions: {
-        agregarSeccion({ commit }){
+        agregarSeccion({
+            commit
+        }) {
             commit('agregarSeccion');
         },
-        changeTitle({ commit }, payload) {
+        changeTitle({
+            commit
+        }, payload) {
             commit('changeTitle', payload)
         },
-        deleteSeccion({ commit },payload){
+        deleteSeccion({
+            commit
+        }, payload) {
             commit('deleteSeccion', payload);
         },
+        agregarTask({
+            commit
+        }, payload) {
+            commit('agregarTask', payload);
+        }
     }
 }
 

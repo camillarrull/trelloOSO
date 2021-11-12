@@ -5,18 +5,27 @@
           >
             <div style="width: 100%">
               <div class="section-title">
-                <p>{{this.thisSeccion.titulo}}</p>
+                <p v-if="!tituloDisplay">{{this.thisSeccion.titulo}}</p>
                 <input
                   class="seccionTitulo"
                   type="text"
                   v-model="titleInput"
                   :placeholder="titleInput"
+                  v-if="tituloDisplay"
                 />
                 <div class="sectionButtons">
+                     <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
                   <button @click="deleteSeccion">x</button>
+                 
                 </div>
               </div>
-              <TaskComponent/>
+              
+              <div class="card card-add">
+                <button @click="agregarTask">+</button>
+            </div>
+           <div v-for="(card, i) in sectionList" :key="i">
+                <TaskComponent :id="sectionList[i].id"/>
+        </div> 
             </div>
           </div>
           <div class="ventanita-container" v-if="ventanitaDelete">
@@ -49,6 +58,8 @@ export default {
     return {
       componentKey: 0,
       titleInput: '',
+      tituloDisplay: false,
+      iconoBoton:true,
       ventanita: false,
       ventanitaDelete: false,
       indiceSeleccionado: 0,
@@ -66,6 +77,13 @@ export default {
     deleteSeccion() {
       this.$store.dispatch('deleteSeccion', this.id)
     },
+    mostrarInputTitulo(){
+        this.tituloDisplay = !this.tituloDisplay
+        this.iconoBoton = !this.iconoBoton
+    },
+    agregarTask() {
+      this.$store.dispatch('agregarTask',this.id)
+    },
   },
   watch: {
     titleInput() {
@@ -79,6 +97,9 @@ export default {
     this.titleInput = this.thisSeccion.titulo
   },
   computed: {
+      sectionList() {
+      return this.$store.state.generalData.secciones[this.id].items;
+    },
     thisSeccion() {
       let seccion;
       const secciones = this.$store.state.generalData.secciones;
