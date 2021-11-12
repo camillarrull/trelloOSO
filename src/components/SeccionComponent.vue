@@ -5,7 +5,7 @@
           >
             <div style="width: 100%">
               <div class="section-title">
-                <p v-if="!tituloDisplay">{{this.thisSeccion.titulo}}</p>
+                <p v-if="!tituloDisplay">{{seccion.titulo}}</p>
                 <input
                   class="seccionTitulo"
                   type="text"
@@ -19,9 +19,8 @@
                  
                 </div>
               </div>
-              
-           <div v-for="(card, i) in sectionList" :key="i">
-                <TaskComponent :id="sectionList[i].id" :idSeccion="sectionId.id"/>
+           <div v-for="(card, i) in seccion.items" :key="i">
+                <TaskComponent :card="card" :idSeccion="seccion.id"/>
         </div> 
               <div class="card card-add">
                 <button @click="agregarTask">+</button>
@@ -50,9 +49,13 @@ export default {
   components: { TaskComponent },
     props: {
       id: {
-        type: Number,
-        default: 9999,
+        type: String,
+        default: "",
       },
+      seccion: {
+          type: Object,
+          default: () => {}
+      }
     },
   data() {
     return {
@@ -82,6 +85,7 @@ export default {
         this.iconoBoton = !this.iconoBoton
     },
     agregarTask() {
+        console.log(this.id)
       this.$store.dispatch('agregarTask',this.id)
     },
   },
@@ -94,26 +98,8 @@ export default {
     }
   },
   created() {
-    this.titleInput = this.thisSeccion.titulo
+    this.titleInput = this.seccion.titulo
   },
-  computed: {
-      sectionList() {
-      return this.$store.state.generalData.secciones[this.id].items;
-    },
-    sectionId() {
-      return this.$store.state.generalData.secciones[this.id];
-    },
-    thisSeccion() {
-      let seccion;
-      const secciones = this.$store.state.generalData.secciones;
-      for(let i = 0; i < secciones.length; i++) {
-        if(secciones[i].id === this.id) {
-          seccion = secciones[i]
-        }
-      }
-      return seccion;
-    }
-  }
 };
 </script>
 

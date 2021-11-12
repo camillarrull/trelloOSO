@@ -15,11 +15,10 @@ const generalData = {
             const newSection = {
                 titulo: "Nueva seccion",
                 items: [],
-                id: state.idSeccion,
-                idRef: 0
+                id: '_' + Math.random().toString(36).substr(2, 9)
             };
             state.secciones.push(newSection);
-            state.idSeccion += 1;
+            console.log(state.secciones)
         },
         changeTitle(state, payload) {
             for (let i = 0; i < state.secciones.length; i++) {
@@ -30,24 +29,21 @@ const generalData = {
             }
         },
         deleteSeccion(state, payload) {
-            for (let i = 0; i < state.secciones.length; i++) {
-                if (state.secciones[i].id === payload) {
-                    state.secciones.splice(i, 1);
-                    break;
-                }
-            }
+            state.secciones.splice(payload, 1)
         },
         agregarTask(state, payload) {
             const newTask = {
                 titulo: 'hola',
                 descripcion: '',
-                id: state.secciones[payload].idRef,
                 status: 'activa',
+                id: '_' + Math.random().toString(36).substr(2, 9)
             };
-            state.secciones[payload].items.push(newTask);
             console.log(state.secciones)
-            state.secciones[payload].idRef += 1;
-            console.log(payload)
+            const newSecciones = state.secciones.map(elem => {
+                if (elem.id === payload) elem.items.push(newTask)
+                return elem
+            })
+            state.secciones = newSecciones
         },
     },
 

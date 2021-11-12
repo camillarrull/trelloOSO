@@ -3,7 +3,7 @@
     <div class="container">
         <div class="card">
               <div class="card-title">
-                <p v-if="!tituloDisplay">{{this.thisTask.titulo}}</p>
+                <p v-if="!tituloDisplay">{{card.titulo}}</p>
                 <input
                   class="seccionTitulo"
                   type="text"
@@ -51,12 +51,16 @@
 export default {
     props: {
       id: {
-        type: Number,
-        default: 9999,
+        type: String,
+        default: "",
       },
       idSeccion:{
-          type: Number,
-        default: 9999,
+          type: String,
+        default: "",
+      },
+      card: {
+          type: Object,
+          default: () => {}
       }
     },
     data(){return {

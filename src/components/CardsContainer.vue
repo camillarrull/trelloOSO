@@ -4,7 +4,7 @@
         <button class="agregar-card" @click="agregarSeccion">Crear Tarjeta</button>
       <div class="container">
         <div v-for="(seccion, i) in sectionList" :key="i">
-          <SeccionComponent :id="sectionList[i].id" />
+          <SeccionComponent :seccion="seccion" :id="seccion.id" />
         </div>
       </div>
     </div>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 import SeccionComponent from '../components/SeccionComponent.vue';
 
 export default {
@@ -25,32 +26,6 @@ export default {
       indiceSeleccionado: 0,
       inputTitulo: "",
       inputDescripcion: "",
-      secciones: [
-        {
-          titulo: "to do",
-          items: [
-            {
-              titulo: "tarea 1",
-              descripcion: "snjkldjns",
-            },
-            {
-              titulo: "tarea 2",
-              descripcion: "fsdsfdg",
-            },
-          ],
-        },
-        {
-          titulo: "done",
-          items: [
-            { titulo: "tarea 3", descripcion: "snjkldjns" },
-            {
-              titulo: "tarea 4",
-              descripcion: "fsdsfdg",
-            },
-          ],
-        },
-      ],
-      indiceItemSeleccionado: 0,
     };
   },
   methods: {
@@ -64,31 +39,14 @@ export default {
       this.indiceSeleccionado = indiceSeccion;
     },
 
-    agregarItem() {
-      console.log(this.inputTitulo, this.inputDescripcion);
-      this.secciones[this.indiceSeleccionado].items.push({
-        titulo: this.inputTitulo,
-        descripcion: this.inputDescripcion,
-      });
-      this.inputTitulo = "";
-      this.inputDescripcion = "";
-      this.ventanita = false;
-    },
     agregarSeccion() {
       this.$store.dispatch('agregarSeccion')
-    },
-    editarTitulo() {},
-    deleteCard(indiceSeccion, indiceItem) {
-      console.log(indiceSeccion, indiceItem);
-      this.secciones[indiceSeccion].items.splice(indiceItem, 1);
-    },
-    deleteSeccion(indiceSeccion) {
-      console.log(indiceSeccion);
-      this.secciones.splice(indiceSeccion, 1);
-      this.ventanitaDelete = false;
-    },
+    }
   },
   computed: {
+      ...mapState({
+          secciones: ({secciones}) => secciones,
+      }),
     sectionList() {
       return this.$store.state.generalData.secciones;
     }
