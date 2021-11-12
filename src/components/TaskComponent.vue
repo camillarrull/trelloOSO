@@ -4,11 +4,11 @@
 
         <div class="card">
             <div class="card-title">
-          <h3>{{ items[0].titulo }}</h3>
+          <h3>aloooo</h3>
           <button>x</button>
         </div>
         
-        <p>{{ items[0].descripcion }}</p>
+        <p>no deberia andar asi</p>
         </div>
 
       <!-- <div class="card" v-for="(item, y) in seccion.items" :key="y">
@@ -42,6 +42,12 @@
 
 <script>
 export default {
+    props: {
+      id: {
+        type: Number,
+        default: 9999,
+      },
+    },
     data(){return {
       ventanita: false,
       ventanitaDelete: false,
@@ -50,10 +56,7 @@ export default {
       inputDescripcion: "",
     
           items: [
-            {
-              titulo: "tarea 1",
-              descripcion: "snjkldjns",
-            },
+           
             // {
             //   titulo: "tarea 2",
             //   descripcion: "fsdsfdg",

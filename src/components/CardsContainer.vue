@@ -3,11 +3,9 @@
     <div class="section-cards">
         <button class="agregar-card" @click="agregarSeccion">Crear Tarjeta</button>
       <div class="container">
-        
         <div v-for="(seccion, i) in sectionList" :key="i">
           <SeccionComponent :id="sectionList[i].id" />
         </div>
-        
       </div>
     </div>
     <!-- v-for="(seccion, i) in secciones"
