@@ -1,35 +1,36 @@
 <template>
   <div class="contenedor-padre-seccion">
-          <div
-            v-bind:class="{'contenedorSeccion': seccion.status === 'activa', 'contenedorFav': seccion.status === 'favorito', 'contenedorInactiva': seccion.status === 'inactiva'}"
-          >
-            <div style="width: 100%">
-              <div class="section-title">
-                <button @click="addFavorite">{{seccion.status === 'favorito' ? '🌟' : '☆'}}</button>
-                <p v-if="!tituloDisplay">{{seccion.titulo}}</p>
-                <input
-                  class="seccionTitulo"
-                  type="text"
-                  v-model="titleInput"
-                  :placeholder="titleInput"
-                  v-if="tituloDisplay"
-                />
-                <div class="sectionButtons">
-                     <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
-                  <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
-                 
-                </div>
-              </div>
-           <div v-for="(card, i) in seccion.items" :key="i">
-                <TaskComponent :card="card" :idSeccion="seccion.id"/>
-        </div> 
-              <div class="card card-add">
-                <button @click="agregarTask">+</button>
-            </div>
-            </div>
+    <div
+      v-bind:class="{'contenedorSeccion': seccion.status === 'activa', 'contenedorFav': seccion.status === 'favorito', 'contenedorInactiva': seccion.status === 'inactiva'}"
+    >
+      <div style="width: 100%">
+        <div class="section-title">
+          <div id="titleStar">
+            <button id="star" @click="addFavorite">{{seccion.status === 'favorito' ? '🌟' : '☆'}}</button>
+            <p id="cardTitle" v-if="!tituloDisplay">{{seccion.titulo}}</p>
+            <input
+              class="seccionTitulo"
+              type="text"
+              v-model="titleInput"
+              :placeholder="titleInput"
+              v-if="tituloDisplay"
+            />
           </div>
-          <div class="ventanita-container" v-if="ventanitaDelete">
-       <!-- <div class="ventanita ventanita-delete">
+          <div class="sectionButtons">
+            <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
+            <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
+          </div>
+        </div>
+        <div v-for="(card, i) in seccion.items" :key="i">
+          <TaskComponent :card="card" :idSeccion="seccion.id" />
+        </div>
+        <div class="card card-add">
+          <button @click="agregarTask">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="ventanita-container" v-if="ventanitaDelete">
+      <!-- <div class="ventanita ventanita-delete">
         <div class="ventanita-title">
           <h3>Eliminar seccion</h3>
           <button @click="ventanitaDelete = !ventanitaDelete">x</button>
@@ -38,7 +39,7 @@
         <button class="button-primario" @click="deleteSeccion">
           ELIMINAR
         </button>
-       </div> -->
+      </div>-->
     </div>
   </div>
 </template>
@@ -107,6 +108,20 @@ export default {
 </script>
 
 <style scoped>
+#star {
+  background: transparent;
+  border: none;
+  margin-right: 10px;
+}
+#cardTitle {
+  color: black;
+  font-size: 20px;
+}
+
+#titleStar {
+  display: flex;
+  align-items: center;
+}
 .contenedorSeccion,
 .contenedorFav,
 .contenedorInactiva {
@@ -121,8 +136,20 @@ export default {
 }
 
 .contenedorFav {
-  background: limegreen;
+  border:5px solid #F2D602;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s;
 }
+
+@keyframes fadeIn {
+  0% {border:0px solid #F2D602;}
+  100% {border:5px solid #F2D602;}
+}
+@keyframes fadeout {
+  100% {border:5px solid #F2D602;}
+  0% {border:0px solid #F2D602;}
+}
+
 
 .contenedorInactiva {
   background: red;
@@ -146,6 +173,7 @@ export default {
 .section-title button {
   font-size: larger;
   font-weight: bold;
+  margin-left: 13px;
 }
 
 ::placeholder {

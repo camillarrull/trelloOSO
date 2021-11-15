@@ -156,6 +156,8 @@ h1 {
     font-weight: bold;
     width: 190px;
     margin: 3px;
+    color: grey;
+
 }
 
 .sectionButtons button {

@@ -71,12 +71,12 @@ export default {
 .section-cards {
   background-color: #8bcde6;
   min-height: 100vh;
-  padding-top: 4rem;
+  padding-top: 1rem;
 }
 
 .agregar-card {
   padding: 1rem;
-  margin-bottom: 10px;
+  margin: 10px;
   border-radius: 5px;
   background: #ffffff;
   border: 1px solid #d0d7da;

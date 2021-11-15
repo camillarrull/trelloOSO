@@ -15,7 +15,7 @@ const generalData = {
         },
         agregarSeccion(state) {
             const newSection = {
-                titulo: "Nueva seccion",
+                titulo: "Titulo",
                 items: [],
                 status: 'activa',
                 // favorito: false,
@@ -71,7 +71,7 @@ const generalData = {
         },
         agregarTask(state, payload) {
             const newTask = {
-                titulo: 'hola',
+                titulo: 'type in',
                 descripcion: '',
                 status: 'activa',
                 id: '_' + Math.random().toString(36).substr(2, 9)

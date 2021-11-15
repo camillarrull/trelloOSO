@@ -4,11 +4,11 @@
       <router-link to="/">
         <button class="nav-button">🏠</button>
       </router-link>
-      <div>
+      <div class="navIconContainer">
         <router-link to="/favoritos">
         <button class="nav-button">🌟</button>
-      </router-link>
-      <router-link to="/papelera">
+        </router-link>
+        <router-link to="/papelera">
         <button class="nav-button">🗑️</button>
       </router-link>
       </div>
@@ -28,5 +28,9 @@ export default {
 </script>
 
 <style scoped>
-  
+  .navIconContainer{
+    width: 110px;
+    display: flex;
+    justify-content: space-around;
+  }
 </style>
