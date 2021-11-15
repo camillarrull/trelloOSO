@@ -16,7 +16,7 @@
                 />
                 <div class="sectionButtons">
                      <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
-                  <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻' : '🗑'}}</button>
+                  <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
                  
                 </div>
               </div>
@@ -131,16 +131,22 @@ export default {
 .contenedor-padre-seccion::v-deep h2 {
   margin-bottom: 0.5rem;
 }
+
 .contenedor-padre-seccion {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .section-title {
   display: flex;
   justify-content: space-between;
 }
 
+.section-title button {
+  font-size: larger;
+  font-weight: bold;
+}
 
 ::placeholder {
   color: #808080;
