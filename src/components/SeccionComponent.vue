@@ -16,7 +16,7 @@
                 />
                 <div class="sectionButtons">
                      <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
-                  <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♲' : '🗑'}}</button>
+                  <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻' : '🗑'}}</button>
                  
                 </div>
               </div>
