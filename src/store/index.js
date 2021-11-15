@@ -45,8 +45,18 @@ const generalData = {
             }
         },
         deleteSeccion(state, payload) {
-            const newSecciones = state.secciones.filter(elem => elem.id !== payload)
-            state.secciones = newSecciones
+            // const newSecciones = state.secciones.filter(elem => elem.id !== payload)
+            // state.secciones = newSecciones
+            for (let i = 0; i < state.secciones.length; i++) {
+                if (state.secciones[i].id === payload) {
+                    console.log(state.secciones[i].status)
+                    if (state.secciones[i].status !== 'inactiva') {
+                        state.secciones[i].status = 'inactiva'
+                    } else {
+                        state.secciones[i].status = 'activa'
+                    }
+                }
+            }
         },
         deleteTask(state, payload) {
             for (let i = 0; i < state.secciones.length; i++) {
@@ -86,7 +96,6 @@ const generalData = {
                     break;
                 }
             }
-            
         },
         // changeFav(state, payload) {
         //     for (let i = 0; i < state.secciones.length; i++) {

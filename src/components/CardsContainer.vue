@@ -7,7 +7,9 @@
         </div>
       <div class="container">
         <div v-for="(seccion, i) in secciones" :key="i">
-          <SeccionComponent :seccion="seccion" :id="seccion.id"/>
+          <div v-if="seccion.status !== 'inactiva'">
+            <SeccionComponent :seccion="seccion" :id="seccion.id"/>
+          </div>
         </div>
       </div>
     </div>

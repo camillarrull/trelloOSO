@@ -5,7 +5,7 @@
           >
             <div style="width: 100%">
               <div class="section-title">
-                <button @click="addFavorite">{{iconoFav ? '☆' : '🌟'}}</button>
+                <button @click="addFavorite">{{seccion.status === 'favorito' ? '🌟' : '☆'}}</button>
                 <p v-if="!tituloDisplay">{{seccion.titulo}}</p>
                 <input
                   class="seccionTitulo"
@@ -16,7 +16,7 @@
                 />
                 <div class="sectionButtons">
                      <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
-                  <button @click="deleteSeccion">x</button>
+                  <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♲' : '🗑'}}</button>
                  
                 </div>
               </div>
@@ -63,8 +63,7 @@ export default {
       componentKey: 0,
       titleInput: '',
       tituloDisplay: false,
-      iconoBoton:true,
-      iconoFav:true,
+      iconoBoton: true,
       ventanita: false,
       ventanitaDelete: false,
       indiceSeleccionado: 0,
