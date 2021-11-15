@@ -3,6 +3,7 @@
     <div class="container">
         <div class="card">
               <div class="card-title">
+                <div class="taskContainer">
                 <p v-if="!tituloDisplay">{{card.titulo}}</p>
                 <input
                   class="seccionTitulo"
@@ -11,9 +12,19 @@
                   :placeholder="titleInput"
                   v-if="tituloDisplay"
                 />
+                <p v-if="!tituloDisplay">{{card.descripcion}}</p>
+                <input
+                  class="seccionTitulo"
+                  type="text"
+                  v-model="descripcionInput"
+                  :placeholder="descripcionInput"
+                  v-if="tituloDisplay"
+                />
+                </div>
                 <div class="sectionButtons">
                      <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
                      <button @click="deleteTask">x</button>
+                     
                 </div>
               </div>
     </div>
@@ -34,7 +45,8 @@ export default {
       }
     },
     data(){return {
-    titleInput: '',
+     titleInput: 'title',
+     descripcionInput:'descripcion',
       tituloDisplay: false,
       iconoBoton:true,
       ventanita: false,
@@ -48,7 +60,6 @@ export default {
     },
 
     deleteCard(indiceSeccion, indiceItem) {
-      console.log(indiceSeccion, indiceItem);
       this.secciones[indiceSeccion].items.splice(indiceItem, 1);
     },
     mostrarInputTitulo(){

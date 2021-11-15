@@ -5,6 +5,7 @@
           >
             <div style="width: 100%">
               <div class="section-title">
+                <button @click="addFavorite">{{iconoFav ? '☆' : '🌟'}}</button>
                 <p v-if="!tituloDisplay">{{seccion.titulo}}</p>
                 <input
                   class="seccionTitulo"
@@ -63,6 +64,7 @@ export default {
       titleInput: '',
       tituloDisplay: false,
       iconoBoton:true,
+      iconoFav:true,
       ventanita: false,
       ventanitaDelete: false,
       indiceSeleccionado: 0,
@@ -75,7 +77,6 @@ export default {
     abrirVentanaDelete(indiceSeccion) {
       this.ventanitaDelete = true;
       this.indiceSeleccionado = indiceSeccion;
-      console.log(indiceSeccion);
     },
     deleteSeccion() {
       this.$store.dispatch('deleteSeccion', this.id)
@@ -84,15 +85,21 @@ export default {
         this.tituloDisplay = !this.tituloDisplay
         this.iconoBoton = !this.iconoBoton
     },
-    agregarTask() {
-        console.log(this.id)
+    agregarTask() {        
       this.$store.dispatch('agregarTask',this.id)
     },
+    addFavorite(){
+      this.$store.dispatch('addFavorite',this.seccion);
+      //  this.iconoFav = !this.iconoFav
+    }
   },
   watch: {
     titleInput() {
       this.$store.dispatch('changeTitle', { titulo: this.titleInput, id: this.id })
     },
+    // statusWatcher(){
+    //    this.$store.dispatch('changeFav', { titulo: this.iconoFav, id: this.id })
+    // }
   },
   created() {
     this.titleInput = this.seccion.titulo

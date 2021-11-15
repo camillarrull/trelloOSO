@@ -23,7 +23,6 @@ export default {
   //   this.$store.dispatch('incrementIndex')
   //   this.$store.dispatch('incrementIndex')
 
-  //   console.log(this.$store.state.generalData)
   // }
 };
 </script>

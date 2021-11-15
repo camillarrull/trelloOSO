@@ -7,7 +7,7 @@
         </div>
       <div class="container">
         <div v-for="(seccion, i) in secciones" :key="i">
-          <SeccionComponent :seccion="seccion" :id="seccion.id" />
+          <SeccionComponent :seccion="seccion" :id="seccion.id"/>
         </div>
       </div>
     </div>
@@ -35,7 +35,6 @@ export default {
       this.indiceSeleccionado = indiceSeccion;
     },
     abrirVentanaDelete(indiceSeccion) {
-      console.log("entro");
       this.ventanitaDelete = true;
       this.indiceSeleccionado = indiceSeccion;
     },

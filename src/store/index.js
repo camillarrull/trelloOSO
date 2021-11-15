@@ -18,11 +18,11 @@ const generalData = {
                 titulo: "Nueva seccion",
                 items: [],
                 status: 'activa',
-                favorito: false,
+                // favorito: false,
                 id: '_' + Math.random().toString(36).substr(2, 9)
             };
             state.secciones.push(newSection);
-            console.log(state.secciones)
+
         },
         changeTitle(state, payload) {
             for (let i = 0; i < state.secciones.length; i++) {
@@ -33,14 +33,10 @@ const generalData = {
             }
         },
         changeTitleCard(state, payload) {
-            console.log("soy", payload)
             for (let i = 0; i < state.secciones.length; i++) {
                 if (state.secciones[i].id === payload.idSeccion) {
-                    console.log('entre al primer for')
                     for (let j = 0; j < state.secciones[i].items.length; j++) {
-                        console.log('entro al segundo for', state.secciones[i].items[j])
                         if (state.secciones[i].items[j].id === payload.id) {
-                            console.log('entre al if');
                             state.secciones[i].items[j].titulo = payload.titulo
                             break;
                         }
@@ -53,15 +49,10 @@ const generalData = {
             state.secciones = newSecciones
         },
         deleteTask(state, payload) {
-            console.log("soy", payload)
             for (let i = 0; i < state.secciones.length; i++) {
                 if (state.secciones[i].id === payload.idSeccion) {
-                    console.log('entre al primer for')
                     for (let j = 0; j < state.secciones[i].items.length; j++) {
-                        console.log('entro al segundo for', state.secciones[i].items[j])
-                        console.log('entre al if del task');
                         const newTask = state.secciones[i].items.filter(elem => elem.id !== payload.id)
-                        console.log(newTask)
                         state.secciones[i].items = newTask
                         break;
                     }
@@ -75,13 +66,36 @@ const generalData = {
                 status: 'activa',
                 id: '_' + Math.random().toString(36).substr(2, 9)
             };
-            console.log(state.secciones)
             const newSecciones = state.secciones.map(elem => {
                 if (elem.id === payload) elem.items.push(newTask)
                 return elem
             })
             state.secciones = newSecciones
         },
+        addFavorite(state, payload) {
+            for (let i = 0; i < state.secciones.length; i++) {
+
+                if (state.secciones[i].id === payload.id) {
+                    if (state.secciones[i].status === 'favorito') {
+                        state.secciones[i].status = 'activa'
+                        console.log(state.secciones[i]);
+                    } else if (state.secciones[i].status === 'activa') {
+                        state.secciones[i].status = 'favorito';
+                        console.log(state.secciones[i]);
+                    }
+                    break;
+                }
+            }
+            
+        },
+        // changeFav(state, payload) {
+        //     for (let i = 0; i < state.secciones.length; i++) {
+        //         if (state.secciones[i].id === payload.id) {
+        //             state.secciones[i].titulo = payload.titulo
+        //             break;
+        //         }
+        //     }
+        // },
     },
 
     actions: {
@@ -119,6 +133,16 @@ const generalData = {
             commit
         }, payload) {
             commit('changeTitleCard', payload)
+        },
+        addFavorite({
+            commit
+        }, payload) {
+            commit('addFavorite', payload);
+        },
+        changeFav({
+            commit
+        }, payload) {
+            commit('changeFav', payload)
         },
     }
 }
