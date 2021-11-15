@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id="pepe">
     <div class="section-cards">
       <div class="container">
         <div v-for="(seccion, i) in secciones" :key="i">
-          <div v-if="seccion.status==='favorito'">
+          <div class="seccion-component" v-if="seccion.status==='favorito'">
           <SeccionComponent :seccion="seccion" :id="seccion.id"/>
           </div>
         </div>
@@ -62,7 +62,6 @@ export default {
   } */
 };
 </script>
-
 <style scoped>
 .section-cards {
   background-color: #8bcde6;

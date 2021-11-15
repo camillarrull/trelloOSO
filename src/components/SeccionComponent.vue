@@ -1,7 +1,7 @@
 <template>
   <div class="contenedor-padre-seccion">
           <div
-            class="contenedorSeccion"
+            v-bind:class="{'contenedorSeccion': seccion.status === 'activa', 'contenedorFav': seccion.status === 'favorito', 'contenedorInactiva': seccion.status === 'inactiva'}"
           >
             <div style="width: 100%">
               <div class="section-title">
@@ -107,7 +107,9 @@ export default {
 </script>
 
 <style scoped>
-.contenedorSeccion {
+.contenedorSeccion,
+.contenedorFav,
+.contenedorInactiva {
   display: flex;
   padding: 1rem;
   background: #d0d7da;
@@ -116,6 +118,14 @@ export default {
   overflow-y: scroll;
   height: 60vh;
   margin: 10px;
+}
+
+.contenedorFav {
+  background: limegreen;
+}
+
+.contenedorInactiva {
+  background: red;
 }
 
 .contenedor-padre-seccion::v-deep h2 {
