@@ -6,13 +6,11 @@
 
         </div>
       <div class="container">
-        <div v-for="(seccion, i) in sectionList" :key="i">
+        <div v-for="(seccion, i) in secciones" :key="i">
           <SeccionComponent :seccion="seccion" :id="seccion.id" />
         </div>
       </div>
     </div>
-    <!-- v-for="(seccion, i) in secciones"
-    :key="i"-->
   </div>
 </template>
 
@@ -50,11 +48,11 @@ export default {
       ...mapState({
           secciones: (state) => state.generalData.secciones
       }),
-    sectionList() {
-      return this.$store.state.generalData.secciones;
-    }
+    // sectionList() {
+    //   return this.$store.state.generalData.secciones;
+    // }
   },
-  watch:{
+ /*  watch:{
       secciones(){
           localStorage.setItem("secciones", JSON.stringify(this.secciones))
       }
@@ -64,7 +62,7 @@ export default {
       if(localStorageSecciones){
           this.$store.dispatch("cargarSecciones", localStorageSecciones)
       }
-  }
+  } */
 };
 </script>
 

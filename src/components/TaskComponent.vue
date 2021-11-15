@@ -13,6 +13,7 @@
                 />
                 <div class="sectionButtons">
                      <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
+                     <button @click="deleteTask">x</button>
                 </div>
               </div>
     </div>
@@ -38,12 +39,6 @@ export default {
       iconoBoton:true,
       ventanita: false,
       ventanitaDelete: false,
-      indiceSeleccionado: 0,
-      inputTitulo: "",
-      inputDescripcion: "",
-      cardTitulo:" Card Title",
-      cardInfo:"Card Info",
-      indiceItemSeleccionado: 0,
     };
   },
   methods: {
@@ -59,6 +54,9 @@ export default {
     mostrarInputTitulo(){
         this.tituloDisplay = !this.tituloDisplay
         this.iconoBoton = !this.iconoBoton
+    },
+    deleteTask() {
+      this.$store.dispatch('deleteTask', {id:this.card.id, idSeccion:this.idSeccion})
     },
   },
   watch: {

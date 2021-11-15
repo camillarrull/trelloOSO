@@ -18,6 +18,7 @@ const generalData = {
                 titulo: "Nueva seccion",
                 items: [],
                 status: 'activa',
+                favorito: false,
                 id: '_' + Math.random().toString(36).substr(2, 9)
             };
             state.secciones.push(newSection);
@@ -50,6 +51,22 @@ const generalData = {
         deleteSeccion(state, payload) {
             const newSecciones = state.secciones.filter(elem => elem.id !== payload)
             state.secciones = newSecciones
+        },
+        deleteTask(state, payload) {
+            console.log("soy", payload)
+            for (let i = 0; i < state.secciones.length; i++) {
+                if (state.secciones[i].id === payload.idSeccion) {
+                    console.log('entre al primer for')
+                    for (let j = 0; j < state.secciones[i].items.length; j++) {
+                        console.log('entro al segundo for', state.secciones[i].items[j])
+                        console.log('entre al if del task');
+                        const newTask = state.secciones[i].items.filter(elem => elem.id !== payload.id)
+                        console.log(newTask)
+                        state.secciones[i].items = newTask
+                        break;
+                    }
+                }
+            }
         },
         agregarTask(state, payload) {
             const newTask = {
@@ -87,6 +104,11 @@ const generalData = {
             commit
         }, payload) {
             commit('deleteSeccion', payload);
+        },
+        deleteTask({
+            commit
+        }, payload) {
+            commit('deleteTask', payload);
         },
         agregarTask({
             commit

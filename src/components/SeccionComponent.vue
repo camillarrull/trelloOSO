@@ -93,9 +93,6 @@ export default {
     titleInput() {
       this.$store.dispatch('changeTitle', { titulo: this.titleInput, id: this.id })
     },
-    thisSeccion() {
-      this.componentKey = this.componentKey + 1;
-    }
   },
   created() {
     this.titleInput = this.seccion.titulo
