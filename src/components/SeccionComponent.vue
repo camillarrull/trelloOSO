@@ -101,10 +101,12 @@ export default {
   background: transparent;
   border: none;
   margin-right: 10px;
+  cursor: pointer;
 }
 #cardTitle {
   color: black;
   font-size: 20px;
+  font-weight: bold;
 }
 
 #titleStar {
