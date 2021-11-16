@@ -120,7 +120,7 @@ export default {
 
 #titleStar {
   display: flex;
-  align-items: center;s
+  align-items: center;
 }
 
 .contenedorSeccion,
