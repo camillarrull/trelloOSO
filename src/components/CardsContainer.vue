@@ -74,18 +74,9 @@ export default {
   background: #d0d7da;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 2s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 .container span {
   display: flex;
   flex-flow: wrap;
 }
+
 </style>
