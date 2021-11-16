@@ -55,14 +55,6 @@ export default {
     };
   },
   methods: {
-    abrirVentana(indiceSeccion) {
-      this.ventanita = true;
-      this.indiceSeleccionado = indiceSeccion;
-    },
-
-    deleteCard(indiceSeccion, indiceItem) {
-      this.secciones[indiceSeccion].items.splice(indiceItem, 1);
-    },
     mostrarInputTitulo(){
         this.tituloDisplay = !this.tituloDisplay
         this.iconoBoton = !this.iconoBoton
@@ -79,6 +71,9 @@ export default {
       this.$store.dispatch('changeDescriptionCard', { titulo: this.descripcionInput, id: this.card.id, idSeccion:this.idSeccion })
     },
   },
+//   created() {
+//     this.descripcionInput = this.card.descripcion
+//   },
   computed:{
     thisTask() {
       let card;
