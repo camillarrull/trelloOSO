@@ -123,6 +123,7 @@ export default {
 #titleStar {
   display: flex;
   align-items: center;
+  font-size: larger;
 }
 
 .contenedorSeccion,
@@ -181,6 +182,7 @@ export default {
 .section-title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .section-title button {
