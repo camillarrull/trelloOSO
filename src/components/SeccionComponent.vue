@@ -17,8 +17,8 @@
             />
           </div>
           <div class="sectionButtons">
-            <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
-            <button @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
+            <button id="editButton" @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
+            <button id="deleteButton" @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
           </div>
         </div>
         <div v-for="(card, i) in seccion.items" :key="i">
@@ -120,8 +120,9 @@ export default {
 
 #titleStar {
   display: flex;
-  align-items: center;
+  align-items: center;s
 }
+
 .contenedorSeccion,
 .contenedorFav,
 .contenedorInactiva {
@@ -130,8 +131,7 @@ export default {
   background: #d0d7da;
   border-radius: 5px;
   width: 350px;
-  overflow-y: scroll;
-  height: 60vh;
+  height: auto;
   margin: 10px;
 }
 
@@ -149,10 +149,21 @@ export default {
   100% {border:5px solid #F2D602;}
   0% {border:0px solid #F2D602;}
 }
-
+@keyframes fadeInRed {
+  0% {border:0px solid red;}
+  100% {border:5px solid red;}
+}
+@keyframes fadeOutRed {
+  100% {border:5px solid red;}
+  0% {border:0px solid red;}
+}
 
 .contenedorInactiva {
-  background: red;
+  border:5px solid red;
+  box-sizing: border-box;
+  animation: fadeInRed 0.3s;
+  pointer-events: none;
+  /* opacity: 0.5; */
 }
 
 .contenedor-padre-seccion::v-deep h2 {

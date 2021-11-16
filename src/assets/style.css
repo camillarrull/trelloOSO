@@ -61,6 +61,19 @@ h1 {
     background: #1A415E;
 }
 
+.contenedorInactiva #deleteButton {
+    pointer-events: all;
+    opacity: 1 !important;
+}
+
+.contenedorInactiva #star,
+.contenedorInactiva #editButton,
+.contenedorInactiva #cardTitle,
+.contenedorInactiva .card,
+.contenedorInactiva .card-add {
+    opacity: 0.5;
+}
+
 /* ///////////// VENTANITA  */
 
 .ventanita-container {
