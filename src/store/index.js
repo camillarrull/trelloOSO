@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import generalData from './general';
-// import favoritesData from './favoritos';
 
 const generalData = {
     state: () => {
@@ -18,7 +16,6 @@ const generalData = {
                 titulo: "Nueva Tarjeta",
                 items: [],
                 status: 'activa',
-                // favorito: false,
                 id: '_' + Math.random().toString(36).substr(2, 9)
             };
             state.secciones.push(newSection);
@@ -57,8 +54,6 @@ const generalData = {
             }
         },
         deleteSeccion(state, payload) {
-            // const newSecciones = state.secciones.filter(elem => elem.id !== payload)
-            // state.secciones = newSecciones
             for (let i = 0; i < state.secciones.length; i++) {
                 if (state.secciones[i].id === payload) {
                     console.log(state.secciones[i].status)
@@ -109,14 +104,6 @@ const generalData = {
                 }
             }
         },
-        // changeFav(state, payload) {
-        //     for (let i = 0; i < state.secciones.length; i++) {
-        //         if (state.secciones[i].id === payload.id) {
-        //             state.secciones[i].titulo = payload.titulo
-        //             break;
-        //         }
-        //     }
-        // },
     },
 
     actions: {
@@ -180,29 +167,3 @@ export default new Vuex.Store({
         generalData
     }
 });
-
-/*
-const secciones = [
-    {
-        titulo: 'personales',
-        id: 1,
-        status: 'activa',
-        favorito: true,
-        cardIdRef: 0,
-        cards: [
-            {
-                titulo: 'sacar al perro',
-                descripcion: 'a la plaza de en frente',
-                id: 1,
-                status: 'activa',
-            },
-            {
-                titulo: 'limpiar la cocina',
-                descripcion: 'ponerle cif',
-                id: 2,
-                status: 'eliminada',
-            }
-        ]
-    }
-]
-*/
