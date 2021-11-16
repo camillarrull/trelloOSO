@@ -2,6 +2,9 @@
   <div>
     <div class="section-cards">
       <div class="container">
+        <button class="limpiar-papelera" @click="limpiarPapelera">Limpiar papelera</button>
+      </div>
+      <div class="container">
         <div v-for="(seccion, i) in secciones" :key="i">
           <div v-if="seccion.status==='inactiva'">
           <SeccionComponent :seccion="seccion" :id="seccion.id"/>
@@ -38,7 +41,10 @@ export default {
     },
 
     agregarSeccion() {
-      this.$store.dispatch('agregarSeccion')
+      this.$store.dispatch('agregarSeccion');
+    },
+    limpiarPapelera() {
+      this.$store.dispatch('limpiarPapelera');
     }
   },
   computed: {
@@ -67,19 +73,19 @@ export default {
 .section-cards {
   background-color: #8bcde6;
   min-height: 100vh;
-  padding-top: 4rem;
+  padding-top: 1rem;
 }
 
-.agregar-card {
+.limpiar-papelera {
   padding: 1rem;
-  margin-bottom: 10px;
+  margin: 10px;
   border-radius: 5px;
   background: #ffffff;
   border: 1px solid #d0d7da;
   font-size: 20px;
   cursor: pointer;
 }
-.agregar-card:hover {
+.limpiar-papelera:hover {
   background: #d0d7da;
 }
 
