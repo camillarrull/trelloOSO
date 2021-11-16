@@ -112,6 +112,7 @@ export default {
   background: transparent;
   border: none;
   margin-right: 10px;
+  cursor: pointer;
 }
 #cardTitle {
   color: black;

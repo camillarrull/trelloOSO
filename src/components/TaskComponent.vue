@@ -22,8 +22,8 @@
                 />
                 </div>
                 <div class="sectionButtons">
-                     <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
-                     <button @click="deleteTask">x</button>
+                     <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
+                     <button @click="deleteTask">🗑️</button>
                      
                 </div>
               </div>
