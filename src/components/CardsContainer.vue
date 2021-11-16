@@ -70,6 +70,7 @@ export default {
   font-size: 20px;
   cursor: pointer;
 }
+
 .agregar-card:hover {
   background: #d0d7da;
 }

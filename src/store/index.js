@@ -21,6 +21,16 @@ const generalData = {
             state.secciones.push(newSection);
 
         },
+        //FIXME: falta que ande posta.
+        limpiarPapelera(state) {
+            if (confirm("¿Seguro/a que querés borrar todo definitivamente?", "") != null) {
+                for (let i = 0; i < state.secciones.length; i++) {
+                    if (state.secciones[i].status === "inactiva") {
+                        state.secciones.splice(i, 1);
+                    }
+                }
+            }
+        },
         changeTitle(state, payload) {
             for (let i = 0; i < state.secciones.length; i++) {
                 if (state.secciones[i].id === payload.id) {
@@ -156,6 +166,11 @@ const generalData = {
             commit
         }, payload) {
             commit('changeFav', payload)
+        },
+        limpiarPapelera({
+            commit
+        }) {
+            commit('limpiarPapelera');
         },
     }
 }
