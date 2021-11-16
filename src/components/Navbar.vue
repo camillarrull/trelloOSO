@@ -18,12 +18,6 @@
 
 <script>
 export default {
-  // mounted() {
-  //   this.$store.dispatch('incrementIndex')
-  //   this.$store.dispatch('incrementIndex')
-  //   this.$store.dispatch('incrementIndex')
-
-  // }
 };
 </script>
 

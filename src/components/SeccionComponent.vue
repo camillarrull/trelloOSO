@@ -18,7 +18,10 @@
           </div>
           <div class="sectionButtons">
             <button id="editButton" @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
-            <button id="deleteButton" @click="deleteSeccion">{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
+            <button
+              id="deleteButton"
+              @click="deleteSeccion"
+            >{{seccion.status === 'inactiva' ? '♻️' : '🗑️'}}</button>
           </div>
         </div>
         <div v-for="(card, i) in seccion.items" :key="i">
@@ -30,16 +33,6 @@
       </div>
     </div>
     <div class="ventanita-container" v-if="ventanitaDelete">
-      <!-- <div class="ventanita ventanita-delete">
-        <div class="ventanita-title">
-          <h3>Eliminar seccion</h3>
-          <button @click="ventanitaDelete = !ventanitaDelete">x</button>
-        </div>
-        <p>Estas seguro de querer eliminar esta seccion?</p>
-        <button class="button-primario" @click="deleteSeccion">
-          ELIMINAR
-        </button>
-      </div>-->
     </div>
   </div>
 </template>
@@ -90,16 +83,12 @@ export default {
     },
     addFavorite(){
       this.$store.dispatch('addFavorite',this.seccion);
-      //  this.iconoFav = !this.iconoFav
     }
   },
   watch: {
     titleInput() {
       this.$store.dispatch('changeTitle', { titulo: this.titleInput, id: this.id })
     },
-    // statusWatcher(){
-    //    this.$store.dispatch('changeFav', { titulo: this.iconoFav, id: this.id })
-    // }
   },
   created() {
     this.titleInput = this.seccion.titulo
@@ -136,34 +125,49 @@ export default {
 }
 
 .contenedorFav {
-  border:5px solid #F2D602;
+  border: 5px solid #f2d602;
   box-sizing: border-box;
   animation: fadeIn 0.3s;
 }
 
 @keyframes fadeIn {
-  0% {border:0px solid #F2D602;}
-  100% {border:5px solid #F2D602;}
+  0% {
+    border: 0px solid #f2d602;
+  }
+  100% {
+    border: 5px solid #f2d602;
+  }
 }
 @keyframes fadeout {
-  100% {border:5px solid #F2D602;}
-  0% {border:0px solid #F2D602;}
+  100% {
+    border: 5px solid #f2d602;
+  }
+  0% {
+    border: 0px solid #f2d602;
+  }
 }
 @keyframes fadeInRed {
-  0% {border:0px solid red;}
-  100% {border:5px solid red;}
+  0% {
+    border: 0px solid red;
+  }
+  100% {
+    border: 5px solid red;
+  }
 }
 @keyframes fadeOutRed {
-  100% {border:5px solid red;}
-  0% {border:0px solid red;}
+  100% {
+    border: 5px solid red;
+  }
+  0% {
+    border: 0px solid red;
+  }
 }
 
 .contenedorInactiva {
-  border:5px solid red;
+  border: 5px solid red;
   box-sizing: border-box;
   animation: fadeInRed 0.3s;
   pointer-events: none;
-  /* opacity: 0.5; */
 }
 
 .contenedor-padre-seccion::v-deep h2 {
@@ -189,5 +193,15 @@ export default {
 
 ::placeholder {
   color: #808080;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
