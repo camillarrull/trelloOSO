@@ -68,7 +68,7 @@ export default {
       this.$store.dispatch('changeTitleCard', { titulo: this.titleInput, id: this.card.id, idSeccion:this.idSeccion })
     },
     descripcionInput() {
-      this.$store.dispatch('changeDescriptionCard', { titulo: this.descripcionInput, id: this.card.id, idSeccion:this.idSeccion })
+      this.$store.dispatch('changeDescriptionCard', { descripcion: this.descripcionInput, id: this.card.id, idSeccion:this.idSeccion })
     },
   },
 //   created() {
