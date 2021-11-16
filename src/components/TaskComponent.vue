@@ -4,6 +4,7 @@
         <div class="card">
               <div class="card-title">
                 <div class="taskContainer">
+                    <div class="div-input">
                 <p v-if="!tituloDisplay">{{card.titulo}}</p>
                 <input
                   class="seccionTitulo"
@@ -21,8 +22,9 @@
                   v-if="tituloDisplay"
                 />
                 </div>
+                <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
+                </div>
                 <div class="sectionButtons">
-                     <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✅'}}</button>
                      <button @click="deleteTask">x</button>
                      
                 </div>
@@ -73,7 +75,10 @@ export default {
   watch: {
     titleInput() {
       this.$store.dispatch('changeTitleCard', { titulo: this.titleInput, id: this.card.id, idSeccion:this.idSeccion })
-    }
+    },
+    descripcionInput() {
+      this.$store.dispatch('changeDescriptionCard', { titulo: this.descripcionInput, id: this.card.id, idSeccion:this.idSeccion })
+    },
   },
   computed:{
     thisTask() {
@@ -91,5 +96,21 @@ export default {
 </script>
 
 <style scoped>
+.taskContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.taskContainer button{
+        transform: rotate(0deg);
+    font-weight: bold;
+}
+.sectionButtons{
+    margin-bottom:5px;
+}
+.div-input .seccionTitulo{
+    background-color: white;
+}
 
 </style>

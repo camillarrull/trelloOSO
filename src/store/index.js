@@ -15,7 +15,7 @@ const generalData = {
         },
         agregarSeccion(state) {
             const newSection = {
-                titulo: "Titulo",
+                titulo: "Nueva Tarjeta",
                 items: [],
                 status: 'activa',
                 // favorito: false,
@@ -38,6 +38,18 @@ const generalData = {
                     for (let j = 0; j < state.secciones[i].items.length; j++) {
                         if (state.secciones[i].items[j].id === payload.id) {
                             state.secciones[i].items[j].titulo = payload.titulo
+                            break;
+                        }
+                    }
+                }
+            }
+        },
+        changeDescriptionCard(state, payload) {
+            for (let i = 0; i < state.secciones.length; i++) {
+                if (state.secciones[i].id === payload.idSeccion) {
+                    for (let j = 0; j < state.secciones[i].items.length; j++) {
+                        if (state.secciones[i].items[j].id === payload.id) {
+                            state.secciones[i].items[j].descripcion = payload.descripcion
                             break;
                         }
                     }
@@ -71,8 +83,8 @@ const generalData = {
         },
         agregarTask(state, payload) {
             const newTask = {
-                titulo: 'type in',
-                descripcion: '',
+                titulo: 'titulo',
+                descripcion: 'descripcion',
                 status: 'activa',
                 id: '_' + Math.random().toString(36).substr(2, 9)
             };
@@ -142,6 +154,11 @@ const generalData = {
             commit
         }, payload) {
             commit('changeTitleCard', payload)
+        },
+        changeDescriptionCard({
+            commit
+        }, payload) {
+            commit('changeDescriptionCard', payload)
         },
         addFavorite({
             commit

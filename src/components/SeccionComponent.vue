@@ -116,6 +116,7 @@ export default {
 #cardTitle {
   color: black;
   font-size: 20px;
+  font-weight: bold;
 }
 
 #titleStar {
