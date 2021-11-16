@@ -13,16 +13,25 @@
           </div>
         </transition-group>
       </div>
+      <div class="Test">
+        <Test3 />
+        <Test2 />
+        <Test />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
 import { mapState } from "vuex"
 import SeccionComponent from '../components/SeccionComponent.vue';
+import Test from '../components/test.vue';
+import Test2 from '../components/test2.vue';
+import Test3 from '../components/test3.vue';
 
 export default {
-  components: { SeccionComponent },
+  components: { Test,SeccionComponent,Test2,Test3 },
   data() {
     return {
       ventanita: false,
@@ -79,4 +88,12 @@ export default {
   flex-flow: wrap;
 }
 
+.Test {
+  height: 184px;
+  display: grid;
+  margin: 29px;
+  width: 364px;
+  background-color: ghostwhite;
+  border-radius: 10px;
+}
 </style>
