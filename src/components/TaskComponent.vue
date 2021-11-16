@@ -22,11 +22,10 @@
                   v-if="tituloDisplay"
                 />
                 </div>
-                <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
                 </div>
                 <div class="sectionButtons">
-                     <button @click="deleteTask">x</button>
-                     
+                     <button @click="mostrarInputTitulo()">{{iconoBoton ? '✎' : '✓'}}</button>
+                     <button @click="deleteTask">🗑️</button>
                 </div>
               </div>
     </div>
