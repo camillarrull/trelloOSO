@@ -97,4 +97,7 @@ export default {
   background-color: ghostwhite;
   border-radius: 10px;
 }
+.Test svg {
+  border-radius: 10px 10px 0px 0px;
+}
 </style>
